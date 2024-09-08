@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Item Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #090909;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(45deg, #b13344, #a93131);
+            color: rgb(5, 30, 37);
+            text-align: center;
+            padding: 20px 0;
+            position:relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            letter-spacing: 1.5px;
+            margin: 0;
+            font-family: 'Arial Black', sans-serif;
+        }
+
+        /* Icon styles */
+        .header-icons {
+            position:absolute;
+            top: 140%;
+            right: 20px;
+            transform: translateY(-50%);
+        }
+
+        .header-icons i {
+            color: white;
+            margin-left: 15px;
+            font-size: 2.0rem;
+            cursor: pointer;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .header-icons i:hover {
+            color: #d7661b;
+        }
+         
+        /* Search bar */
+        #search-bar {
+            display: none;
+            position: absolute;
+            top: 130px;
+            left: 20px;
+            width: 200px;
+            padding: 0px;
+            border-radius: 10px;
+            background-color: rgb(202, 19, 19);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        #search-bar input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        /* Cart popup */
+        #cart-popup {
+            display: none;
+            position: absolute;
+            right: 15px;
+            bottom: 600px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        #cart-popup h3 {
+            margin: 0 0 10px 0;
+        }
+
+        /* Product styles */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product {
+            background: rgb(20, 99, 133);
+            border-radius: 10px;
+            overflow: hidden;
+            width: 300px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(9, 110, 21, 0.15);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .product:hover {
+            transform: translateY(-30px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .product img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .product:hover img {
+            transform: scale(1.1);
+        }
+
+        .product h2 {
+            font-size: 1.7rem;
+            margin: 15px 0;
+            color: #2f9964;
+        }
+
+        .product p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .product button {
+            background-color: #41f2ffbc;
+            color: rgb(124, 7, 7);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 20px;
+            margin: 15px 75px;
+            font-size: 0.rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .product button:hover {
+            background-color: #65c32b;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #333;
+            color: white;
+            margin-top: 10px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div id="search-bar">
+        <input type="text" placeholder="Search for products...">
+    </div>
+    <div class="header-icons">
+        <i class="fas fa-search" onclick="toggleSearchBar()"></i>
+        <i class="fas fa-shopping-cart" onclick="toggleCart()"></i>
+    </div>
+    <h1>JIIT SPORTS COMPLEX</h1>
+</header>
+
+<div id="cart-popup">
+    <h3>Cart</h3>
+    <p>No items in the cart.</p>
+</div>
+
+<div class="container">
+    <div class="product">
+        <img src="soccer-ball.jpg" alt="Soccer Ball">
+        <h2>Soccer Ball</h2>
+        <p>999</p>
+        <button onclick="addToCart('Soccer Ball')">Add to Cart</button>
+    </div>
+
+    <div class="product">
+        <img src="cricket-bat.jpg" alt="Cricket Bat">
+        <h2>Cricket Bat</h2>
+        <p>4999</p>
+        <button onclick="addToCart('Cricket Bat')">Add to Cart</button>
+    </div>
+
+    <div class="product">
+        <img src="basketball.jpg" alt="Basketball">
+        <h2>Basketball</h2>
+        <p>1599</p>
+        <button onclick="addToCart('Basketball')">Add to Cart</button>
+    </div>
+
+    <div class="product">
+        <img src="tennis-racket.jpg" alt="Tennis Racket">
+        <h2>Tennis Racket</h2>
+        <p>1299</p>
+        <button onclick="addToCart('Tennis Racket')">Add to Cart</button>
+    </div>
+
+    <div class="product">
+        <img src="running-shoes.jpg" alt="Running Shoes">
+        <h2>Running Shoes</h2>
+        <p>2999</p>
+        <button onclick="addToCart('Running Shoes')">Add to Cart</button>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; CONTACT : 7618332599  |  @thakurrpsingh40@gmail.com</p>
+</footer>
+
+<script>
+    function toggleSearchBar() {
+        const searchBar = document.getElementById('search-bar');
+        if (searchBar.style.display === 'none' || searchBar.style.display === '') {
+            searchBar.style.display = 'block';
+        } else {
+            searchBar.style.display = 'none';
+        }
+    }
+
+    function toggleCart() {
+        const cartPopup = document.getElementById('cart-popup');
+        if (cartPopup.style.display === 'none' || cartPopup.style.display === '') {
+            cartPopup.style.display = 'block';
+        } else {
+            cartPopup.style.display = 'none';
+        }
+    }
+
+    let cartItems = [];
+
+    function addToCart(item) {
+        cartItems.push(item);
+        const cartPopup = document.getElementById('cart-popup');
+        cartPopup.innerHTML = `
+            <h3>Cart</h3>
+            <ul>${cartItems.map(i => `<li>${i}</li>`).join('')}</ul>
+        `;
+    }
+</script>
+
+</body>
+</html>
